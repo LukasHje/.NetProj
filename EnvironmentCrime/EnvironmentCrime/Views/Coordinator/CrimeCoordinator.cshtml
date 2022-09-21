@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "_LoggedInLayout";
+}
+@model Department
+<nav>
+    <ul>
+        <li><a class="reports" asp-controller="Coordinator" asp-action="StartCoordinator">Start(Ärenden)</a></li>
+        <li><a class="reportAdd" asp-controller="Coordinator" asp-action="ReportCrime">Rapportera brott</a></li>
+        <li class="right"><a class="logout" asp-controller="Home" asp-action="Logout">Logga ut</a></li>
+    </ul>
+</nav><!-- End Nav -->
+
+<div id="content">
+    <h2>Detaljer för ärendet</h2>
+    <p class="info">Du är inloggad som samordnare</p>
+
+    @await Component.InvokeAsync("CrimeShared", ViewBag.ID)
+
+<section id="bottomColumn">
+    <h3>Redigera ärende</h3>
+    <form asp-controller="Coordinator" asp-action="UpdateDepartment" method="post">
+        <p>
+            Ange enhet:
+            <select asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.ListOfDepartments, "DepartmentId", "DepartmentName"))">
+                <option>Välj avdelning</option>
+            </select>
+        </p>
+        <p><input class="button" type="submit" value="Spara" /></p>
+    </form>
+</section>
+
+    <footer>
+        &copy; Småstads Kommun All rights reserved.
+    </footer>
+</div><!-- End Content -->

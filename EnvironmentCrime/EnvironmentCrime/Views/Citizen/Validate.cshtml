@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "Validate";
+}
+@model Errand
+@await Component.InvokeAsync("Validate", Model)
+<p><a class="button" asp-controller="Home" asp-action="Index" id="link">Tillbaka</a> <a class="button" asp-controller="Citizen" asp-action="Thanks">Bekräfta</a></p>
